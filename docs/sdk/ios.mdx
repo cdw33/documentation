@@ -317,8 +317,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
   usage strings to your <code>Info.plist</code> file. Finally, check your device
   settings to make sure you haven't already granted location permissions.
 </div>
+    
+### background modes
 
-If you are requesting background permissions, in your project settings, go to _Signing & Capabilities_, add _Background Modes_, and turn on _Background fetch_ and _Location updates_. Note that this requires additional justification during App Store review. Learn more [below](#submit-to-app-store).
+If planning to leverage responsive or continuous background tracking go to your project settings, _Signing & Capabilities_, add _Background Modes_, and turn on _Background fetch_ and _Location updates_. Note that this requires additional justification during App Store review. Learn more [below](#submit-to-app-store).
 
 <img
   className="large"
