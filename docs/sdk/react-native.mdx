@@ -102,6 +102,26 @@ Learn about platform-specific implementations of these functions in the [iOS SDK
 
 Before tracking the user's location, the user must have granted location permissions for the app.
 
+To request location permissions for the app, call:
+
+```javascript
+const background = true;
+Radar.requestPermissions(background).then((status) => {
+  // do something with status
+});
+```
+
+Passing a value of `false` into `requestPermissions` will only prompt for foreground location permissions.
+
+`status` will be a string, one of:
+- **`GRANTED_BACKGROUND`**
+- **`GRANTED_FOREGROUND`**
+- **`DENIED`**
+
+Learn about platform-specific permissions in the [iOS SDK documentation](/sdk/ios) and [Android SDK documentation](/sdk/android).
+
+### Get permissions
+
 To determine the whether user has granted location permissions for the app, call:
 
 ```javascript
@@ -116,18 +136,6 @@ Radar.getPermissionsStatus().then((status) => {
 - **`GRANTED_FOREGROUND`**
 - **`NOT_DETERMINED`**
 - **`DENIED`**
-
-To request location permissions for the app, call:
-
-```javascript
-Radar.requestPermissions(background).then((status) => {
-  // do something with status
-});
-```
-
-where `background` is a boolean indicating whether to request background location permissions or foreground location permissions.
-
-Learn about platform-specific permissions in the [iOS SDK documentation](/sdk/ios) and [Android SDK documentation](/sdk/android).
 
 ### Foreground tracking
 
@@ -168,7 +176,7 @@ For background tracking, the SDK supports custom tracking options as well as thr
 
 - **`EFFICIENT`**: A low frequency of location updates and lowest battery usage. On Android, avoids Android vitals bad behavior thresholds.
 - **`RESPONSIVE`**: A medium frequency of location updates and low battery usage. Suitable for most consumer use cases.
-- **`CONTINUOUS`**: A high frequency of location updates and higher battery usage. Suitable for on-demand use cases (e.g., delivery tracking) and some consumer use cases (e.g., order ahead, "mall mode").
+- **`CONTINUOUS`**: A high frequency of location updates and higher battery usage. Suitable for on-demand use cases (e.g., delivery tracking) and some consumer use cases (e.g., order ahead, "mall mode"). In continous mode, Android devices start a foreground service, and iOS shows a blue bar.
 
 Learn about platform-specific implementations of these presets in the [iOS SDK documentation](/sdk/ios) and [Android SDK documentation](/sdk/android).
 
